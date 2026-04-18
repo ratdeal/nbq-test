@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | NBQ Engineering</title>
+  <meta
+    name="description"
+    content="Get in touch with NBQ Engineering for collaborations, opportunities, post-quantum security inquiries, or general questions."
+  />
+
+  <link rel="icon" href="assets/favicon.ico" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    .contact-hero {
+      padding-top: calc(var(--nav-h) + 5rem);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg);
+    }
+
+    .contact-hero__headline {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+      max-width: 10ch;
+    }
+
+    .contact-hero__sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text-muted);
+      max-width: 58ch;
+    }
+
+    .contact-section {
+      padding-block: var(--space-xl);
+    }
+
+    .contact-section__inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    .contact-form-wrap {
+      background: transparent;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-row--half {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .form-row--half .form-group {
+      flex: 1;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .form-group label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      border: 1px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 0.95rem 1rem;
+      color: var(--color-text);
+      outline: none;
+      transition: border-color var(--duration-fast) var(--ease),
+                  background var(--duration-fast) var(--ease);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--color-text);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    .form-group textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .form-group--check {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 0.25rem;
+    }
+
+    .form-group--check input {
+      width: auto;
+      accent-color: var(--color-text);
+    }
+
+    .form-group--check label {
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      font-family: var(--font-display);
+      color: var(--color-text-muted);
+    }
+
+    .form-notice {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--color-text-muted);
+      margin-top: 0.25rem;
+      max-width: 60ch;
+    }
+
+    .form-success {
+      padding: 1.5rem 0 0;
+    }
+
+    .form-success__icon {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--color-text);
+      margin-bottom: 1rem;
+      font-family: var(--font-mono);
+    }
+
+    .form-success h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p {
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      max-width: 48ch;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+      padding-top: 0.2rem;
+    }
+
+    .contact-info__block {
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .contact-info__block:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .contact-info__email a,
+    .contact-info__address {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text);
+    }
+
+    .contact-info__email a:hover {
+      opacity: 0.7;
+    }
+
+    .contact-map-placeholder {
+      position: relative;
+      min-height: 180px;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.45);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+    }
+
+    .contact-map-placeholder__grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(17,17,17,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(17,17,17,0.08) 1px, transparent 1px);
+      background-size: 34px 34px;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .contact-map-placeholder__label {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.9);
+      padding: 0.45rem 0.55rem;
+      color: var(--color-text);
+    }
+
+    @media (max-width: 960px) {
+      .contact-section__inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .contact-hero {
+        padding-top: calc(var(--nav-h) + 3.5rem);
+        padding-bottom: var(--space-lg);
+      }
+
+      .contact-hero__headline {
+        font-size: clamp(2.4rem, 11vw, 4rem);
+      }
+
+      .contact-hero__sub,
+      .form-notice,
+      .contact-info__email a,
+      .contact-info__address {
+        font-size: 0.95rem;
+      }
+
+      .form-row--half {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"></a>
+
+      <button
+        class="nav__toggle"
+        id="navToggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav__links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+
+      <div class="nav__cta">
+        <a href="contact.html" class="btn btn--primary">Get in Touch</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="contact-hero">
+      <div class="container">
+        <div class="label reveal">
+          <span class="square-marker"></span> Contact
+        </div>
+
+        <h1 class="contact-hero__headline reveal reveal--delay-1">
+          Let’s start a conversation.
+        </h1>
+
+        <p class="contact-hero__sub reveal reveal--delay-2">
+          Whether you want to discuss collaboration, research, opportunities,
+          post-quantum security, or secure systems engineering, we would be glad
+          to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT CONTENT -->
+    <section class="contact-section">
+      <div class="container contact-section__inner">
+
+        <!-- FORM -->
+        <div class="contact-form-wrap reveal">
+          <div class="label">
+            <span class="square-marker"></span> Send a Message
+          </div>
+
+          <form class="contact-form" id="contactForm" novalidate>
+            <div class="form-row form-row--half">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last name" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="organization">Organization</label>
+              <input type="text" id="organization" name="organization" placeholder="Organization name" />
+            </div>
+
+            <div class="form-group">
+              <label for="inquiryType">Inquiry Type</label>
+              <select id="inquiryType" name="inquiryType" required>
+                <option value="" disabled selected>Select inquiry type</option>
+                <option value="pqc">Post-Quantum Security</option>
+                <option value="migration">PQC Migration &amp; Readiness</option>
+                <option value="secure-systems">Secure Systems</option>
+                <option value="partnership">Partnership &amp; Collaboration</option>
+                <option value="research">Research Inquiry</option>
+                <option value="careers">Careers</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="6"
+                placeholder="Tell us a bit about your inquiry..."
+                required
+              ></textarea>
+            </div>
+
+            <div class="form-group form-group--check">
+              <input type="checkbox" id="nda" name="nda" />
+              <label for="nda">I am interested in discussing under NDA</label>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">Submit</button>
+
+            <div class="form-notice">
+              By submitting this form, you agree that NBQ Engineering may contact
+              you regarding your inquiry. We do not share your information with third parties.
+            </div>
+          </form>
+
+          <div class="form-success" id="formSuccess" hidden>
+            <div class="form-success__icon">✓</div>
+            <h3>Message received.</h3>
+            <p>Thank you for reaching out. We will review your message and get back to you soon.</p>
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <aside class="contact-info reveal reveal--delay-1">
+          <div class="contact-info__block">
+            <div class="label">
+              <span class="square-marker"></span> General
+            </div>
+            <p class="contact-info__email">
+              <a href="mailto:info@nbq-engineering.com">info@nbq-engineering.com</a>
+            </p>
+          </div>
+
+          <div class="contact-info__block">
+            <div class="label">
+              <span class="square-marker"></span> Collaborations &amp; Technical
+            </div>
+            <p class="contact-info__email">
+              <a href="mailto:contact@nbq-engineering.com">contact@nbq-engineering.com</a>
+            </p>
+          </div>
+
+          <div class="contact-info__block">
+            <div class="label">
+              <span class="square-marker"></span> Location
+            </div>
+            <address class="contact-info__address">
+              NBQ Engineering<br />
+              Morfou 9<br />
+              Patras 26441<br />
+              Greece
+            </address>
+          </div>
+
+          <div class="contact-map-placeholder" aria-label="Office location">
+            <div class="contact-map-placeholder__grid" aria-hidden="true"></div>
+            <span class="contact-map-placeholder__label">Patras, Greece · EU</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <img src="images/logo.png" alt="NBQ Engineering" class="footer__logo" />
+        
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <ul class="nav__links" id="navLinks">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      </nav>
+
+      <div class="footer__meta">
+        <p class="footer__copy">© 2026 NBQ Engineering. All rights reserved.</p>
+        <p class="footer__legal">Privacy-first. Trust-driven. Quantum-resilient.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>
