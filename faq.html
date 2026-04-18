@@ -8,11 +8,168 @@
     name="description"
     content="Frequently asked questions about post-quantum cryptography, Q-Day, crypto agility, and how organizations can prepare for the post-quantum transition."
   />
-  <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon.ico" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    .page-hero {
+      padding-top: calc(var(--nav-h) + 5rem);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg);
+    }
+
+    .page-hero__inner {
+      max-width: 860px;
+    }
+
+    .faq-page__headline {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-md);
+      max-width: 10ch;
+    }
+
+    .faq-page__intro {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--color-text-muted);
+      max-width: 58ch;
+    }
+
+    .page-hero__rule {
+      width: 100%;
+      height: 1px;
+      background: var(--color-border);
+      margin-top: var(--space-lg);
+    }
+
+    .faq-section {
+      padding-block: var(--space-xl);
+      background: var(--color-bg);
+    }
+
+    .faq-list {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--color-border);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .faq-item__question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      text-align: left;
+      background: transparent;
+      border: none;
+      padding: 1.4rem 0;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    .faq-item__question span:first-child {
+      font-size: 1.05rem;
+      font-weight: 600;
+      line-height: 1.45;
+      max-width: 48ch;
+    }
+
+    .faq-item__icon {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .faq-item__icon::before,
+    .faq-item__icon::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 1.5px;
+      background: var(--color-text);
+      transform: translate(-50%, -50%);
+      transition: transform var(--duration-mid) var(--ease),
+                  opacity var(--duration-mid) var(--ease);
+    }
+
+    .faq-item__icon::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .faq-item.active .faq-item__icon::after {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(90deg) scaleX(0);
+    }
+
+    .faq-item__answer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--duration-mid) var(--ease);
+    }
+
+    .faq-item.active .faq-item__answer {
+      grid-template-rows: 1fr;
+    }
+
+    .faq-item__answer-inner {
+      overflow: hidden;
+    }
+
+    .faq-item__answer-inner p {
+      padding: 0 0 1.5rem;
+      max-width: 62ch;
+      font-size: 0.98rem;
+      line-height: 1.8;
+      color: var(--color-text-muted);
+    }
+
+    @media (max-width: 640px) {
+      .page-hero {
+        padding-top: calc(var(--nav-h) + 3.5rem);
+        padding-bottom: var(--space-lg);
+      }
+
+      .faq-page__headline {
+        font-size: clamp(2.4rem, 11vw, 4rem);
+      }
+
+      .faq-page__intro {
+        font-size: 0.95rem;
+      }
+
+      .faq-item__question {
+        align-items: flex-start;
+        padding: 1.15rem 0;
+      }
+
+      .faq-item__question span:first-child {
+        font-size: 0.98rem;
+        max-width: none;
+      }
+
+      .faq-item__answer-inner p {
+        font-size: 0.92rem;
+        padding-bottom: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -25,12 +182,12 @@
       </button>
       <ul class="nav__links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="technology.html">Technology</a></li>
-        <li><a href="team.html">Team</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="careers.html">Careers</a></li>
         <li><a href="faq.html" class="active">FAQ</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
+
       <a href="contact.html" class="btn btn--outline nav__cta">Get in Touch</a>
     </div>
   </nav>
@@ -38,17 +195,20 @@
   <main>
     <!-- PAGE HERO -->
     <section class="page-hero">
-      <div class="container">
+      <div class="container page-hero__inner">
         <div class="label reveal">
           <span class="square-marker"></span> FAQ
         </div>
-        <h1 class="hero__headline reveal reveal--delay-1">
+
+        <h1 class="faq-page__headline reveal reveal--delay-1">
           Frequently asked questions.
         </h1>
+
         <p class="faq-page__intro reveal reveal--delay-2">
-          A concise overview of the core concepts, risks, and practical questions
-          surrounding post-quantum cryptography and the transition ahead.
+          A concise overview of the core ideas, emerging risks, and practical
+          questions surrounding post-quantum cryptography and the transition ahead.
         </p>
+
         <div class="page-hero__rule"></div>
       </div>
     </section>
@@ -57,6 +217,7 @@
     <section class="faq-section faq-section--page" id="faq">
       <div class="container">
         <div class="faq-list">
+
           <article class="faq-item reveal">
             <button class="faq-item__question" type="button" aria-expanded="false">
               <span>What is post-quantum cryptography (PQC)?</span>
@@ -226,6 +387,7 @@
               </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
@@ -236,13 +398,13 @@
     <div class="container footer__inner">
       <div class="footer__brand">
         <img src="images/logo.png" alt="NBQ Engineering" class="footer__logo" />
-        <p class="footer__tagline">Navigating Beyond Quantum.</p>
+  
       </div>
       <nav class="footer__nav">
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="technology.html">Technology</a></li>
-          <li><a href="team.html">Team</a></li>
+        <ul class="nav__links" id="navLinks">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="careers.html">Careers</a></li>
           <li><a href="faq.html">FAQ</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
