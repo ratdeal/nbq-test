@@ -1,0 +1,505 @@
+/* ============================================================
+   AXIOM — responsive.css
+   Responsive breakpoints and mobile layout overrides
+   ============================================================ */
+
+/* ============================================================
+   LARGE DESKTOP  (≤ 1280px)
+   ============================================================ */
+@media (max-width: 1280px) {
+  :root {
+    --container-pad: 2rem;
+  }
+
+  .capabilities__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cap-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .cap-item:nth-child(3) {
+    border-right: 1px solid var(--color-border);
+  }
+
+  .cap-item:nth-child(1),
+  .cap-item:nth-child(2) {
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-lg);
+  }
+
+  .cap-item:nth-child(3),
+  .cap-item:nth-child(4) {
+    padding-top: var(--space-md);
+  }
+
+  .arch-stat-block {
+    padding-left: var(--space-lg);
+  }
+}
+
+/* ============================================================
+   TABLET  (≤ 960px)
+   ============================================================ */
+@media (max-width: 960px) {
+  :root {
+    --container-pad: 1.75rem;
+  }
+
+  .hero__split {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .hero__quantum-wrap {
+    width: 100%;
+    max-width: 360px;
+    height: 300px;
+  }
+
+  .hero-v2__actions {
+    gap: 1rem;
+  }
+
+  .hero-v2__sub {
+    max-width: 42ch;
+  }
+
+  /* Hide CTA in nav */
+  .nav__cta {
+    display: none;
+  }
+
+  /* Show hamburger */
+  .nav__toggle {
+    display: flex;
+  }
+
+  /* Mobile nav links */
+  .nav__links {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-md) var(--container-pad);
+    gap: var(--space-md);
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav--dark .nav__links {
+    background: var(--color-black);
+    border-bottom-color: var(--color-border-dark);
+  }
+
+  .nav__links.open {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .nav__links li a {
+    font-size: 0.85rem;
+  }
+
+  /* About split */
+  .about-split__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  .about-split__headline {
+    position: static;
+    max-width: none;
+  }
+
+  .about-split__intro {
+    max-width: none;
+  }
+
+  .feature-card--light {
+    padding: 1.35rem;
+  }
+
+  /* Tech dark / why this matters */
+  .tech-dark__content {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Capabilities */
+  .capabilities__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Core services terminal */
+  .services-terminal__body {
+    height: 300px;
+    padding: 1.2rem;
+  }
+
+  .services-terminal__title {
+    margin-right: 0;
+    text-align: right;
+    font-size: 0.68rem;
+  }
+
+  .services-terminal__metric {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+
+  /* CTA Banner */
+  .cta-banner__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Domain showcase */
+  .domain-showcase__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .domain-showcase__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Mission block */
+  .mission-block__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+
+  /* Core caps */
+  .core-caps__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Arch section */
+  .arch-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .arch-stat-block {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid var(--color-border-dark);
+    padding-top: var(--space-lg);
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+  }
+
+  /* Tech pillars */
+  .tech-pillar__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .tech-pillar--alt .tech-pillar__visual {
+    order: -1;
+  }
+
+  /* Team grid */
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-card {
+    margin-right: 0;
+  }
+
+  /* Join section */
+  .join-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact */
+  .contact-section__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info {
+    position: static;
+  }
+
+  /* FAQ */
+  .faq-item__question span:first-child {
+    max-width: none;
+  }
+
+  /* Footer */
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    row-gap: var(--space-md);
+  }
+
+  .footer__meta {
+    text-align: left;
+    grid-column: 1 / -1;
+  }
+
+  /* br-desktop hides on tablet */
+  .br-desktop {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MOBILE  (≤ 640px)
+   ============================================================ */
+@media (max-width: 640px) {
+  :root {
+    --container-pad: 1.25rem;
+    --space-xl: 4rem;
+    --space-xxl: 6rem;
+  }
+
+  .hero {
+    padding-top: calc(var(--nav-h) + 4rem);
+  }
+
+  .hero__headline {
+    font-size: clamp(2.8rem, 11vw, 4rem);
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero--nbq-v2 {
+    min-height: 100svh;
+  }
+
+  .hero-v2__stage {
+    padding: 3rem 0 4.5rem;
+  }
+
+  .hero-v2__logo {
+    width: clamp(210px, 62vw, 320px);
+  }
+
+  .hero-v2__tagline {
+    font-size: clamp(16px, 6vw, 28px);
+    letter-spacing: 0.12em;
+    gap: 0.18em;
+  }
+
+  .hero-v2__sub {
+    font-size: 0.95rem;
+    max-width: 30ch;
+    margin-top: 1.2rem;
+  }
+
+  .hero-v2__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: min(280px, 100%);
+    margin-top: 1.5rem;
+  }
+
+  .hero-v2__actions .btn {
+    width: 100%;
+  }
+
+  .hero-v2__status {
+    bottom: 18px;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+  }
+
+  /* About split */
+  .about-split {
+    padding-block: var(--space-xl);
+  }
+
+  .about-split__grid-bg {
+    background-size: 30px 30px;
+    opacity: 0.22;
+  }
+
+  .about-split__headline {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  .about-split__intro {
+    font-size: 0.95rem;
+  }
+
+  .feature-card--light {
+    padding: 1.1rem;
+  }
+
+  .feature-card__title {
+    font-size: 1rem;
+  }
+
+  .feature-card__body p {
+    font-size: 0.92rem;
+  }
+
+  /* Core services terminal */
+  .services-terminal {
+    border-radius: 14px;
+  }
+
+  .services-terminal__topbar {
+    padding: 0 0.85rem;
+  }
+
+  .services-terminal__body {
+    height: 280px;
+    padding: 1rem;
+  }
+
+  .services-terminal__line {
+    font-size: 0.8rem;
+    gap: 0.4rem;
+  }
+
+  .services-terminal__dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .services-terminal__service-block {
+    padding: 0.75rem;
+  }
+
+  .services-terminal__service-title {
+    font-size: 0.72rem;
+  }
+
+  /* Domain showcase */
+  .domain-showcase__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .domain-card {
+    padding: 0.85rem;
+  }
+
+  .domain-card__text {
+    font-size: 0.92rem;
+  }
+
+  /* Team card compact on small screens */
+  .team-card {
+    grid-template-columns: 80px 1fr auto;
+  }
+
+  .team-card__photo {
+    width: 80px;
+    height: 100px;
+  }
+
+  .team-card__name {
+    font-size: 0.9rem;
+  }
+
+  /* Form row stacked */
+  .form-row--half {
+    flex-direction: column;
+  }
+
+  /* Team hero */
+  .team-hero__headline {
+    font-size: clamp(2.5rem, 10vw, 4rem);
+  }
+
+  /* Page hero */
+  .page-hero {
+    padding-top: calc(var(--nav-h) + 3rem);
+  }
+
+  /* Tech hero */
+  .tech-hero {
+    padding-top: calc(var(--nav-h) + 3rem);
+  }
+
+  /* Contact hero */
+  .contact-hero {
+    padding-top: calc(var(--nav-h) + 3rem);
+  }
+
+  .contact-hero__headline {
+    font-size: clamp(2.5rem, 11vw, 4rem);
+  }
+
+  /* FAQ */
+  .faq-page__intro {
+    font-size: 0.95rem;
+  }
+
+  .faq-section {
+    padding-block: var(--space-xl);
+  }
+
+  .faq-item__question {
+    padding: 1.1rem 0;
+    align-items: flex-start;
+  }
+
+  .faq-item__question span:first-child {
+    font-size: 0.98rem;
+  }
+
+  .faq-item__answer-inner p {
+    font-size: 0.92rem;
+    padding-bottom: 1.2rem;
+  }
+
+  /* Footer */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .footer__meta {
+    grid-column: auto;
+  }
+
+  /* Arch stat block */
+  .arch-stat-block {
+    gap: var(--space-md);
+  }
+
+  .arch-stat__num {
+    font-size: 2rem;
+  }
+}
+
+/* ============================================================
+   MOTION PREFERENCES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .cube {
+    animation: none !important;
+  }
+
+  .services-terminal__cursor {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .faq-item__answer,
+  .faq-item__icon::before,
+  .faq-item__icon::after {
+    transition: none !important;
+  }
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
