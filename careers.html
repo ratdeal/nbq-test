@@ -23,8 +23,39 @@
     /* ============================================================
        CAREERS PAGE — INLINE PAGE-SPECIFIC STYLES
        ============================================================ */
+
+    .careers-hero {
+      width: 100%;
+      margin-top: var(--nav-h);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border);
+      background: #0b1116;
+    }
+
+    .careers-hero img {
+      width: 100%;
+      height: clamp(260px, 38vw, 520px);
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
+    .careers-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(6, 14, 19, 0.55),
+        rgba(15, 37, 48, 0.35),
+        rgba(15, 122, 143, 0.18)
+      );
+      pointer-events: none;
+    }
+
     .careers-page {
-      padding-top: calc(var(--nav-h) + 5rem);
+      padding-top: 5rem;
       padding-bottom: var(--space-xxl);
       border-bottom: 1px solid var(--color-border);
       background: var(--color-bg);
@@ -109,8 +140,16 @@
     }
 
     @media (max-width: 640px) {
+      .careers-hero {
+        margin-top: var(--nav-h);
+      }
+
+      .careers-hero img {
+        height: 220px;
+      }
+
       .careers-page {
-        padding-top: calc(var(--nav-h) + 3.5rem);
+        padding-top: 3.5rem;
         padding-bottom: var(--space-xl);
       }
 
@@ -165,6 +204,14 @@
   </header>
 
   <main>
+    <!-- TOP HORIZONTAL IMAGE -->
+    <section class="careers-hero">
+      <img
+        src="images/workers-top (2).jpg"
+        alt="Workers building infrastructure high above the city"
+      />
+    </section>
+
     <section class="careers-page">
       <div class="container careers-page__inner">
         <div class="label reveal">
@@ -226,16 +273,15 @@
     <div class="container footer__inner">
       <div>
         <img src="images/logo.png" alt="NBQ Engineering" class="footer__logo" />
-        
       </div>
 
       <nav class="footer__nav" aria-label="Footer">
         <ul>
           <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
