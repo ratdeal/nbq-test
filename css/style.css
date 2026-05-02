@@ -465,128 +465,227 @@ h1, h2, h3, h4 {
   opacity: 0.6;
 }
 
+
 /* ============================================================
-   9. ABOUT SPLIT SECTION
+   9. ABOUT SPLIT SECTION — DARK QUANTUM CONTINUATION
    ============================================================ */
+
 .about-split {
   position: relative;
   padding-block: var(--space-xxl);
-  border-bottom: 1px solid var(--color-border);
-  background: var(--color-bg);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background:
+    linear-gradient(
+      180deg,
+      #060709 0%,
+      #070b0d 18%,
+      #0b1114 42%,
+      #111719 68%,
+      #f0efed 100%
+    );
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* Soft fade from hero into About */
+.about-split::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 260px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 7, 9, 1) 0%,
+      rgba(6, 7, 9, 0.92) 36%,
+      rgba(0, 212, 170, 0.08) 68%,
+      rgba(6, 7, 9, 0) 100%
+    );
+}
+
+/* Soft fade from About into the next light section */
+.about-split::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 240px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(240, 239, 237, 0) 0%,
+      rgba(240, 239, 237, 0.72) 72%,
+      rgba(240, 239, 237, 1) 100%
+    );
 }
 
 .about-split__grid-bg {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(17,17,17,0.09) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17,17,17,0.09) 1px, transparent 1px);
-  background-size: 44px 44px;
-  opacity: 0.55;
-  mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  overflow: hidden;
+  z-index: 0;
+
+  background:
+    radial-gradient(circle at 18% 20%, rgba(0, 212, 170, 0.16), transparent 28%),
+    radial-gradient(circle at 78% 18%, rgba(0, 150, 190, 0.12), transparent 30%),
+    radial-gradient(circle at 70% 72%, rgba(0, 212, 170, 0.08), transparent 34%),
+    radial-gradient(circle at 30% 78%, rgba(0, 100, 160, 0.10), transparent 30%);
+
+  opacity: 1;
+  animation: aboutHeroGlowDrift 18s ease-in-out infinite alternate;
 }
 
+/* Subtle quantum particles */
+.about-split__grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+
+  background-image:
+    radial-gradient(circle, rgba(0, 212, 170, 0.28) 1px, transparent 1.5px),
+    radial-gradient(circle, rgba(0, 150, 190, 0.16) 1px, transparent 1.5px);
+
+  background-size:
+    52px 52px,
+    110px 110px;
+
+  background-position:
+    0 0,
+    36px 48px;
+
+  opacity: 0.38;
+  transform: rotate(-4deg);
+  animation: aboutParticleDrift 34s linear infinite;
+}
+
+/* Large orbital ring, very subtle */
+.about-split__grid-bg::after {
+  content: "";
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  right: -220px;
+  top: 42%;
+  border-radius: 50%;
+
+  background:
+    repeating-radial-gradient(
+      circle,
+      rgba(0, 212, 170, 0.11) 0 1px,
+      transparent 1px 38px
+    );
+
+  opacity: 0.38;
+  transform: translateY(-50%) rotate(0deg);
+  animation: aboutOrbitSlow 36s linear infinite;
+}
+
+/* Keep content above animated background */
 .about-split__inner {
   position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  gap: var(--space-xl);
-  align-items: start;
+  z-index: 2;
 }
 
-.about-split__left {
-  position: relative;
-}
-
+/* Make About text readable on dark background */
+.about-split .label,
 .about-split__headline {
-  font-size: clamp(2rem, 4vw, 3.1rem);
-  font-weight: 700;
-  line-height: 1.08;
-  max-width: 11ch;
-  position: sticky;
-  top: calc(var(--nav-h) + 3rem);
-  color: var(--color-text);
+  color: var(--color-white);
 }
 
-.about-split__right {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.about-split .square-marker {
+  background: #00d4aa;
 }
 
 .about-split__intro {
-  max-width: 56ch;
-  font-size: 1rem;
-  line-height: 1.85;
-  color: var(--color-text-muted);
-  margin-bottom: 0.25rem;
+  color: rgba(255,255,255,0.68);
 }
 
-.feature-card {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-md);
-}
-
+/* Dark glass cards instead of bright white cards */
 .feature-card--light {
-  padding: 1.5rem 1.6rem;
-  border: 1px solid var(--color-border);
-  background: rgba(255,255,255,0.52);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  transition:
-    transform var(--duration-mid) var(--ease),
-    border-color var(--duration-mid) var(--ease),
-    background var(--duration-mid) var(--ease),
-    box-shadow var(--duration-mid) var(--ease);
+  background: rgba(255,255,255,0.055);
+  border-color: rgba(255,255,255,0.12);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.22);
 }
 
 .feature-card--light:hover {
   transform: translateY(-4px);
-  background: rgba(255,255,255,0.82);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  background: rgba(255,255,255,0.085);
+  border-color: rgba(0,212,170,0.28);
+  box-shadow: 0 28px 80px rgba(0,212,170,0.08);
 }
 
-.feature-card .square-marker {
-  margin-top: 0.45rem;
-  flex-shrink: 0;
+.feature-card--light .feature-card__meta {
+  color: rgba(0,212,170,0.78);
 }
 
-.feature-card__meta {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-text-muted);
-  margin-bottom: 1rem;
+.feature-card--light .feature-card__title {
+  color: var(--color-white);
 }
 
-.feature-card__title {
-  font-size: 1.08rem;
-  font-family: var(--font-mono);
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.9rem;
-  color: var(--color-text);
+.feature-card--light .feature-card__body p {
+  color: rgba(255,255,255,0.64);
 }
 
-.feature-card__body p {
-  font-size: 1rem;
-  color: var(--color-text-muted);
-  line-height: 1.8;
+/* Animations */
+@keyframes aboutHeroGlowDrift {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    opacity: 0.78;
+  }
+
+  100% {
+    transform: scale(1.06) translate3d(1.5%, -1.5%, 0);
+    opacity: 1;
+  }
 }
 
+@keyframes aboutParticleDrift {
+  0% {
+    transform: rotate(-4deg) translate3d(0, 0, 0);
+    background-position:
+      0 0,
+      36px 48px;
+  }
+
+  100% {
+    transform: rotate(-4deg) translate3d(-90px, 60px, 0);
+    background-position:
+      180px 120px,
+      -80px 140px;
+  }
+}
+
+@keyframes aboutOrbitSlow {
+  0% {
+    transform: translateY(-50%) rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: translateY(-50%) rotate(180deg) scale(1.03);
+  }
+
+  100% {
+    transform: translateY(-50%) rotate(360deg) scale(1);
+  }
+}
 /* ============================================================
    10. TECHNOLOGY SECTION (index)
    ============================================================ */
 .tech-dark {
   position: relative;
-  background: var(--color-bg);
+  background:
+    linear-gradient(
+      180deg,
+      #f0efed 0%,
+      var(--color-bg) 28%,
+      var(--color-bg) 100%
+    );
   color: var(--color-text);
   padding-block: var(--space-xxl);
   overflow: hidden;
@@ -1070,10 +1169,55 @@ h1, h2, h3, h4 {
   background: var(--color-bg-light);
 }
 
+.domain-card__image-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.14);
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity var(--duration-mid) var(--ease);
+}
+
 .domain-card__image {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  filter: grayscale(100%);
+  transform: scale(1);
+  transition:
+    filter var(--duration-mid) var(--ease),
+    transform var(--duration-mid) var(--ease);
+}
+
+.domain-card:hover .domain-card__image {
+  filter: grayscale(0%);
+  transform: scale(1.04);
+}
+
+.domain-card:hover .domain-card__image-placeholder::after {
+  opacity: 0;
+}
+
+.domain-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* Default state: black and white */
+  filter: grayscale(100%);
+  transform: scale(1);
+
+  /* Smooth transition back to original color */
+  transition:
+    filter var(--duration-mid) var(--ease),
+    transform var(--duration-mid) var(--ease);
+}
+
+/* Hover state: restore original color */
+.domain-card:hover .domain-card__image {
+  filter: grayscale(0%);
+  transform: scale(1.04);
 }
 
 .domain-card__num {
@@ -2438,4 +2582,785 @@ h1, h2, h3, h4 {
 #domains,
 #top {
   scroll-margin-top: calc(var(--nav-h) + 12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-split__grid-bg,
+  .about-split__grid-bg::before,
+  .about-split__grid-bg::after {
+    animation: none;
+  }
+}
+/* ============================================================
+   NBQ INDEX — SEAMLESS SECTION POLISH OVERRIDES
+   Paste this block at the VERY END of css/style.css.
+   Purpose: remove harsh divider lines, fix background overlaps,
+   and create smooth professional transitions between index sections.
+   ============================================================ */
+
+:root {
+  --nbq-void: #060709;
+  --nbq-void-2: #070d10;
+  --nbq-abyss: #0a1519;
+  --nbq-deep: #10242b;
+  --nbq-cyan: #3dcfea;
+  --nbq-teal: #00d4aa;
+  --nbq-paper: #f0efed;
+  --nbq-paper-soft: #f7f6f4;
+  --nbq-paper-warm: #ebe9e4;
+  --nbq-soft-line: rgba(17, 17, 17, 0.075);
+}
+
+html,
+body {
+  background: var(--nbq-void);
+}
+
+main {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      180deg,
+      var(--nbq-void) 0%,
+      var(--nbq-void) 28%,
+      var(--nbq-paper) 52%,
+      var(--nbq-paper-soft) 100%
+    );
+}
+
+/* Remove the template's hard section dividers on the homepage. */
+.hero,
+.about-split,
+.tech-dark,
+.capabilities,
+.cta-banner,
+.domain-showcase,
+.footer {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+}
+
+/* Avoid 1px browser rounding seams between stacked sections. */
+.about-split,
+.tech-dark,
+.capabilities,
+.cta-banner,
+.domain-showcase,
+.footer {
+  margin-top: -1px;
+}
+
+/* Dark navigation for the dark hero. Requires: <nav class="nav nav--dark" id="nav"> in index.html */
+.nav.nav--dark {
+  background: rgba(6, 7, 9, 0.68);
+  border-bottom: 0;
+  box-shadow: none;
+}
+
+.nav.nav--dark.scrolled {
+  background: rgba(6, 7, 9, 0.88);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
+}
+
+.nav.nav--dark .nav__cta {
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.34);
+}
+
+.nav.nav--dark .nav__cta:hover {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--nbq-void);
+  border-color: rgba(255, 255, 255, 0.92);
+}
+
+/* HERO: keeps the top cinematic but prepares a natural fade into About. */
+.hero--nbq-v2 {
+  background:
+    radial-gradient(circle at 15% 18%, rgba(61, 207, 234, 0.10), transparent 28%),
+    radial-gradient(circle at 78% 30%, rgba(0, 212, 170, 0.08), transparent 30%),
+    linear-gradient(180deg, #050607 0%, #060709 58%, #071014 100%);
+}
+
+.hero--nbq-v2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 3;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 7, 9, 0) 0%,
+      rgba(6, 9, 11, 0.50) 34%,
+      rgba(7, 13, 16, 0.88) 72%,
+      var(--nbq-void-2) 100%
+    );
+}
+
+.hero-v2__container {
+  position: relative;
+  z-index: 4;
+}
+
+/* ABOUT: no sudden jump to beige inside the same content area. */
+.about-split {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(61, 207, 234, 0.10), transparent 26%),
+    radial-gradient(circle at 82% 28%, rgba(0, 212, 170, 0.10), transparent 30%),
+    radial-gradient(circle at 62% 76%, rgba(61, 207, 234, 0.055), transparent 34%),
+    linear-gradient(
+      180deg,
+      var(--nbq-void-2) 0%,
+      #071116 34%,
+      #0a171c 68%,
+      var(--nbq-deep) 100%
+    );
+  padding-block: clamp(7rem, 10vw, 11rem);
+}
+
+.about-split::before {
+  height: 320px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 7, 9, 0.92) 0%,
+      rgba(7, 13, 16, 0.55) 46%,
+      rgba(7, 13, 16, 0) 100%
+    );
+}
+
+.about-split::after {
+  height: 360px;
+  bottom: -1px;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 36, 43, 0) 0%,
+      rgba(16, 36, 43, 0.72) 18%,
+      rgba(36, 57, 60, 0.42) 48%,
+      rgba(240, 239, 237, 0.78) 78%,
+      var(--nbq-paper) 100%
+    );
+}
+
+.about-split__grid-bg {
+  opacity: 0.82;
+  mix-blend-mode: screen;
+}
+
+.about-split__grid-bg::before {
+  opacity: 0.25;
+}
+
+.about-split__grid-bg::after {
+  opacity: 0.26;
+}
+
+.about-split__inner {
+  z-index: 3;
+}
+
+/* Cards become cleaner and less noisy over the dark section. */
+.feature-card--light {
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.045));
+  box-shadow:
+    0 28px 90px rgba(0, 0, 0, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.055);
+}
+
+/* WHY: transition starts light, without the previous visible section cut. */
+.tech-dark {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(61, 207, 234, 0.06), transparent 30%),
+    linear-gradient(
+      180deg,
+      var(--nbq-paper) 0%,
+      #f2f1ee 24%,
+      var(--nbq-paper-soft) 100%
+    );
+  color: var(--color-text);
+  padding-top: clamp(7rem, 10vw, 11rem);
+  padding-bottom: clamp(6rem, 9vw, 9rem);
+}
+
+.tech-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 220px;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(240, 239, 237, 1) 0%,
+      rgba(240, 239, 237, 0.62) 48%,
+      rgba(240, 239, 237, 0) 100%
+    );
+}
+
+.tech-dark::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 -1px 0;
+  height: 240px;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(247, 246, 244, 0) 0%,
+      rgba(247, 246, 244, 0.76) 62%,
+      var(--nbq-paper-soft) 100%
+    );
+}
+
+.tech-dark__inner,
+.tech-dark .container {
+  position: relative;
+  z-index: 2;
+}
+
+.tech-dark .label--light {
+  color: rgba(17, 17, 17, 0.56);
+}
+
+.tech-dark .square-marker--light {
+  background: var(--color-text);
+}
+
+.arch-card {
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(61, 207, 234, 0.13), transparent 28%),
+    linear-gradient(180deg, #15191d 0%, #0e1115 100%);
+  box-shadow: 0 32px 90px rgba(17, 17, 17, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* CAPABILITIES: replaces visible grid dividers with soft cards. */
+.capabilities {
+  position: relative;
+  background:
+    linear-gradient(180deg, var(--nbq-paper-soft) 0%, #f4f2ee 46%, var(--nbq-paper) 100%);
+  padding-top: clamp(5rem, 8vw, 8rem);
+  padding-bottom: clamp(5.5rem, 8vw, 8.5rem);
+}
+
+.capabilities::before,
+.capabilities::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+.capabilities::before {
+  top: 0;
+  height: 160px;
+  background: linear-gradient(180deg, rgba(247,246,244,1), rgba(247,246,244,0));
+}
+
+.capabilities::after {
+  bottom: -1px;
+  height: 200px;
+  background: linear-gradient(180deg, rgba(240,239,237,0), var(--nbq-paper-warm));
+}
+
+.capabilities > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.capabilities__grid {
+  gap: 1rem;
+  border-top: 0;
+}
+
+.cap-item,
+.cap-item:nth-child(1),
+.cap-item:nth-child(2),
+.cap-item:nth-child(3),
+.cap-item:nth-child(4) {
+  border: 0 !important;
+  padding: 1.6rem;
+  min-height: 250px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 18px 60px rgba(17, 17, 17, 0.045);
+}
+
+.cap-item:hover {
+  background: rgba(255, 255, 255, 0.62);
+  transform: translateY(-3px);
+  transition:
+    transform var(--duration-mid) var(--ease),
+    background var(--duration-mid) var(--ease),
+    box-shadow var(--duration-mid) var(--ease);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 24px 70px rgba(17, 17, 17, 0.07);
+}
+
+.services-terminal {
+  position: relative;
+  z-index: 1;
+}
+
+/* DOMAINS: soft continuation; image cards no longer feel separated by a hard line. */
+.domain-showcase {
+  background:
+    radial-gradient(circle at 86% 12%, rgba(61, 207, 234, 0.07), transparent 30%),
+    linear-gradient(180deg, var(--nbq-paper-warm) 0%, var(--nbq-paper) 44%, var(--nbq-paper-soft) 100%);
+  padding-top: clamp(6rem, 9vw, 9rem);
+  padding-bottom: clamp(6rem, 9vw, 9rem);
+}
+
+.domain-showcase::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 190px;
+  pointer-events: none;
+  background: linear-gradient(180deg, var(--nbq-paper-warm), rgba(235, 233, 228, 0));
+}
+
+.domain-showcase > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.domain-card {
+  border-color: rgba(17, 17, 17, 0.08);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.48);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 22px 70px rgba(17, 17, 17, 0.055);
+  overflow: hidden;
+}
+
+.domain-card:hover {
+  background: rgba(255, 255, 255, 0.68);
+  border-color: rgba(17, 17, 17, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 28px 80px rgba(17, 17, 17, 0.08);
+}
+
+.domain-card__pill {
+  border-color: rgba(17, 17, 17, 0.10);
+  background: rgba(255, 255, 255, 0.52);
+}
+
+/* FOOTER: no hard top border; subtle fade from content into footer. */
+.footer {
+  margin-top: -1px;
+  background:
+    linear-gradient(180deg, var(--nbq-paper-soft) 0%, #e9e7e2 100%);
+  box-shadow: inset 0 60px 90px rgba(255, 255, 255, 0.34);
+}
+
+/* Accessibility: reduce animated background movement when requested. */
+@media (prefers-reduced-motion: reduce) {
+  .about-split__grid-bg,
+  .about-split__grid-bg::before,
+  .about-split__grid-bg::after,
+  .hero-v2__glow {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   NBQ INDEX — SEAMLESS HERO/ABOUT + REFINED ABOUT CARDS V2
+   Paste this block at the VERY END of css/style.css.
+   ============================================================ */
+
+/* The hero now physically overlaps the About section so the fade is not a hard stacked cut. */
+.hero--nbq-v2 {
+  min-height: calc(100vh + 140px);
+  padding-bottom: 140px;
+  margin-bottom: -140px;
+  background:
+    radial-gradient(circle at 16% 18%, rgba(61, 207, 234, 0.11), transparent 30%),
+    radial-gradient(circle at 78% 24%, rgba(0, 212, 170, 0.085), transparent 32%),
+    radial-gradient(circle at 48% 92%, rgba(0, 212, 170, 0.08), transparent 38%),
+    linear-gradient(
+      180deg,
+      #050607 0%,
+      #060709 50%,
+      #071014 78%,
+      #08141a 100%
+    );
+}
+
+.hero--nbq-v2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 420px;
+  pointer-events: none;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at 50% 72%, rgba(61, 207, 234, 0.075), transparent 50%),
+    linear-gradient(
+      180deg,
+      rgba(5, 6, 7, 0) 0%,
+      rgba(6, 9, 11, 0.24) 30%,
+      rgba(7, 14, 18, 0.72) 64%,
+      rgba(8, 20, 26, 0.98) 100%
+    );
+}
+
+.hero--nbq-v2::after {
+  height: 520px;
+  bottom: -1px;
+  z-index: 3;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5, 6, 7, 0) 0%,
+      rgba(7, 13, 17, 0.18) 22%,
+      rgba(8, 20, 26, 0.66) 58%,
+      rgba(8, 20, 26, 1) 100%
+    );
+}
+
+.hero-v2__container {
+  min-height: 100vh;
+  z-index: 5;
+}
+
+.hero-v2__scanlines {
+  opacity: 0.55;
+  mask-image: linear-gradient(180deg, black 0%, black 72%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, black 0%, black 72%, transparent 100%);
+}
+
+/* About starts underneath the hero with the same tone, then slowly develops its own depth. */
+.about-split {
+  margin-top: -1px;
+  padding-top: clamp(12rem, 15vw, 17rem);
+  padding-bottom: clamp(8rem, 11vw, 12rem);
+  background:
+    radial-gradient(circle at 16% 18%, rgba(61, 207, 234, 0.085), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(0, 212, 170, 0.075), transparent 30%),
+    radial-gradient(circle at 62% 76%, rgba(61, 207, 234, 0.05), transparent 36%),
+    linear-gradient(
+      180deg,
+      #08141a 0%,
+      #08141a 12%,
+      #091820 42%,
+      #0b1c22 74%,
+      var(--nbq-deep) 100%
+    );
+}
+
+.about-split::before {
+  height: 520px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 20, 26, 1) 0%,
+      rgba(8, 20, 26, 0.76) 38%,
+      rgba(9, 24, 32, 0.28) 72%,
+      rgba(9, 24, 32, 0) 100%
+    );
+}
+
+.about-split::after {
+  height: 390px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(16, 36, 43, 0) 0%,
+      rgba(16, 36, 43, 0.56) 20%,
+      rgba(63, 78, 76, 0.30) 54%,
+      rgba(240, 239, 237, 0.78) 82%,
+      var(--nbq-paper) 100%
+    );
+}
+
+.about-split__grid-bg {
+  opacity: 0.7;
+}
+
+.about-split__grid-bg::before {
+  opacity: 0.18;
+}
+
+.about-split__grid-bg::after {
+  opacity: 0.18;
+  filter: blur(0.3px);
+}
+
+.about-split__inner {
+  gap: clamp(3rem, 7vw, 7rem);
+}
+
+.about-split__headline {
+  max-width: 11.5ch;
+}
+
+.about-split__intro {
+  margin-bottom: 1.25rem;
+  max-width: 66ch;
+}
+
+/* About boxes now follow the same professional card language as the lower sections. */
+.about-split .feature-card,
+.about-split .feature-card--light,
+.about-split .feature-card--panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  padding: clamp(1.35rem, 2vw, 1.75rem);
+  margin-top: 1rem;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.105);
+  background:
+    radial-gradient(circle at 95% 0%, rgba(61, 207, 234, 0.115), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.078), rgba(255, 255, 255, 0.038));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    0 22px 70px rgba(0, 0, 0, 0.21);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  transition:
+    transform var(--duration-mid) var(--ease),
+    border-color var(--duration-mid) var(--ease),
+    background var(--duration-mid) var(--ease),
+    box-shadow var(--duration-mid) var(--ease);
+}
+
+.about-split .feature-card::before,
+.about-split .feature-card--light::before,
+.about-split .feature-card--panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.10), transparent 32%),
+    linear-gradient(315deg, rgba(0, 212, 170, 0.055), transparent 42%);
+  opacity: 0.72;
+}
+
+.about-split .feature-card > .square-marker,
+.about-split .feature-card--light > .square-marker,
+.about-split .feature-card--panel > .square-marker {
+  position: absolute;
+  top: 1.35rem;
+  right: 1.35rem;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #3dcfea;
+  box-shadow: 0 0 22px rgba(61, 207, 234, 0.42);
+  opacity: 0.86;
+}
+
+.about-split .feature-card__body {
+  position: relative;
+  z-index: 1;
+  max-width: 58ch;
+}
+
+.about-split .feature-card__meta {
+  width: max-content;
+  margin-bottom: 0.9rem;
+  padding: 0.25rem 0.56rem;
+  border-radius: 999px;
+  border: 1px solid rgba(61, 207, 234, 0.18);
+  background: rgba(61, 207, 234, 0.075);
+  color: rgba(144, 229, 242, 0.86);
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.about-split .feature-card__title {
+  margin-bottom: 0.7rem;
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  letter-spacing: -0.015em;
+}
+
+.about-split .feature-card__body p {
+  max-width: 58ch;
+  line-height: 1.72;
+}
+
+.about-split .feature-card:hover,
+.about-split .feature-card--light:hover,
+.about-split .feature-card--panel:hover {
+  transform: translateY(-4px);
+  border-color: rgba(61, 207, 234, 0.22);
+  background:
+    radial-gradient(circle at 95% 0%, rgba(61, 207, 234, 0.16), transparent 36%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.092), rgba(255, 255, 255, 0.052));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 30px 90px rgba(0, 0, 0, 0.26),
+    0 0 60px rgba(61, 207, 234, 0.055);
+}
+
+/* A slightly stronger fade into the next light section because About is now deeper/darker. */
+.tech-dark {
+  padding-top: clamp(8rem, 11vw, 12rem);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(61, 207, 234, 0.055), transparent 30%),
+    linear-gradient(
+      180deg,
+      var(--nbq-paper) 0%,
+      #f1efeb 34%,
+      var(--nbq-paper-soft) 100%
+    );
+}
+
+.tech-dark::before {
+  height: 280px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(240, 239, 237, 1) 0%,
+      rgba(240, 239, 237, 0.74) 48%,
+      rgba(240, 239, 237, 0) 100%
+    );
+}
+
+/* ============================================================
+   FINAL PATCH — ABOUT SECTION TYPOGRAPHY / SPACING REFINEMENT
+   Fixes cramped heading + paragraph spacing shown in screenshot
+   ============================================================ */
+
+.about-split__inner {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.72fr) minmax(460px, 1fr);
+  align-items: start;
+  gap: clamp(3rem, 6vw, 6.5rem);
+}
+
+.about-split__left {
+  max-width: 680px;
+}
+
+.about-split__headline {
+  max-width: 620px;
+  font-size: clamp(3rem, 5.2vw, 5.8rem);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+  margin: 0;
+}
+
+.about-split__right {
+  padding-top: clamp(1.4rem, 3vw, 2.8rem);
+}
+
+.about-split__intro {
+  max-width: 760px;
+  margin: 0 0 clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(1.02rem, 1.15vw, 1.18rem);
+  line-height: 1.85;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+/* Mobile/tablet safety overrides kept here as well, so this file works
+   even if responsive.css has older About overrides. */
+@media (max-width: 960px) {
+  .about-split__inner {
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .about-split__left {
+    max-width: none;
+  }
+
+  .about-split__headline {
+    max-width: 760px;
+    font-size: clamp(2.7rem, 8vw, 4.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  .about-split__right {
+    padding-top: 0;
+  }
+
+  .about-split__intro {
+    max-width: 760px;
+    margin-top: 0.4rem;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 2vw, 1.12rem);
+    line-height: 1.8;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-split {
+    padding-top: 5.5rem;
+  }
+
+  .about-split .label {
+    margin-bottom: 1.65rem;
+  }
+
+  .about-split__headline {
+    max-width: 11.5ch;
+    font-size: clamp(2.55rem, 11vw, 3.65rem);
+    line-height: 1.07;
+    letter-spacing: -0.045em;
+  }
+
+  .about-split__intro {
+    max-width: 34rem;
+    margin-top: 1.65rem;
+    font-size: 1rem;
+    line-height: 1.85;
+  }
+}
+
+@media (max-width: 420px) {
+  .about-split__headline {
+    max-width: 10.8ch;
+    font-size: clamp(2.35rem, 12vw, 3.2rem);
+  }
+
+  .about-split__intro {
+    font-size: 0.96rem;
+    line-height: 1.8;
+  }
+}
+
+
+/* ============================================================
+   ABOUT SECTION — RIGHT CONTENT VERTICAL ALIGNMENT FIX
+   ============================================================ */
+
+.about-split__right {
+  padding-top: clamp(1.4rem, 3vw, 2.8rem);
+}
+
+.about-split__intro {
+  margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+}
+
+.feature-card--light + .feature-card--light {
+  margin-top: 1rem;
 }
