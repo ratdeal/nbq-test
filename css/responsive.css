@@ -316,10 +316,24 @@
     padding-block: var(--space-xl);
   }
 
-  .about-split__grid-bg {
-    background-size: 30px 30px;
-    opacity: 0.22;
-  }
+.about-split__grid-bg {
+  opacity: 0.82;
+}
+
+.about-split__grid-bg::before {
+  background-size:
+    46px 46px,
+    96px 96px;
+  opacity: 0.28;
+}
+
+.about-split__grid-bg::after {
+  width: 420px;
+  height: 420px;
+  right: -260px;
+  top: 34%;
+  opacity: 0.28;
+}
 
   .about-split__headline {
     font-size: clamp(1.8rem, 9vw, 2.5rem);
@@ -501,5 +515,123 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+/* ============================================================
+   NBQ INDEX — MOBILE SEAMLESS POLISH OVERRIDES
+   Paste this block at the VERY END of css/responsive.css.
+   ============================================================ */
+
+@media (max-width: 960px) {
+  .nav.nav--dark .nav__links {
+    background: rgba(6, 7, 9, 0.96);
+    border-bottom: 0;
+    box-shadow: 0 26px 70px rgba(0, 0, 0, 0.32);
+  }
+
+  .capabilities__grid {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-split {
+    padding-block: 5.5rem 6.5rem;
+  }
+
+  .about-split::after {
+    height: 260px;
+  }
+
+  .tech-dark {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .capabilities,
+  .domain-showcase {
+    padding-block: 5rem;
+  }
+
+  .cap-item,
+  .cap-item:nth-child(1),
+  .cap-item:nth-child(2),
+  .cap-item:nth-child(3),
+  .cap-item:nth-child(4),
+  .domain-card {
+    border-radius: 20px;
+  }
+}
+
+/* ============================================================
+   NBQ INDEX — MOBILE HERO/ABOUT + ABOUT CARDS V2
+   Paste this block at the VERY END of css/responsive.css.
+   ============================================================ */
+
+@media (max-width: 960px) {
+  .hero--nbq-v2 {
+    min-height: calc(100svh + 110px);
+    padding-bottom: 110px;
+    margin-bottom: -110px;
+  }
+
+  .about-split {
+    padding-top: 9rem;
+  }
+
+  .about-split__headline {
+    max-width: 14ch;
+  }
+
+  .about-split .feature-card,
+  .about-split .feature-card--light,
+  .about-split .feature-card--panel {
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero--nbq-v2 {
+    min-height: calc(100svh + 90px);
+    padding-bottom: 90px;
+    margin-bottom: -90px;
+  }
+
+  .hero--nbq-v2::before,
+  .hero--nbq-v2::after {
+    height: 360px;
+  }
+
+  .about-split {
+    padding-top: 7.75rem;
+    padding-bottom: 6.75rem;
+  }
+
+  .about-split::before {
+    height: 380px;
+  }
+
+  .about-split::after {
+    height: 300px;
+  }
+
+  .about-split .feature-card,
+  .about-split .feature-card--light,
+  .about-split .feature-card--panel {
+    margin-top: 0.85rem;
+    padding: 1.15rem;
+    border-radius: 20px;
+  }
+
+  .about-split .feature-card > .square-marker,
+  .about-split .feature-card--light > .square-marker,
+  .about-split .feature-card--panel > .square-marker {
+    top: 1.05rem;
+    right: 1.05rem;
+  }
+
+  .about-split .feature-card__meta {
+    font-size: 0.58rem;
+    padding: 0.22rem 0.48rem;
   }
 }
