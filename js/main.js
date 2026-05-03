@@ -423,4 +423,34 @@ function openFaqFromHash() {
 openFaqFromHash();
 window.addEventListener('hashchange', openFaqFromHash);
 
+
+
+/* ----------------------------------------------------------
+   DIGITAL DIVIDER: trigger animation when user sees it
+---------------------------------------------------------- */
+const digitalDivider = document.querySelector('.digital-section-divider');
+
+if (digitalDivider) {
+  if ('IntersectionObserver' in window) {
+    const dividerObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            digitalDivider.classList.add('is-visible');
+            dividerObserver.unobserve(digitalDivider);
+          }
+        });
+      },
+      {
+        threshold: 0.35,
+        rootMargin: '0px 0px -12% 0px'
+      }
+    );
+
+    dividerObserver.observe(digitalDivider);
+  } else {
+    digitalDivider.classList.add('is-visible');
+  }
+}
+
 })();
