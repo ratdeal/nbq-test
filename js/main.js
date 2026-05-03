@@ -382,4 +382,45 @@
     });
   });
 });
+
+/* ----------------------------------------------------------
+   FAQ HASH OPENING
+   Opens a specific FAQ item when arriving from a link like:
+   faq.html#quantum-cybersecurity-concern
+---------------------------------------------------------- */
+function openFaqFromHash() {
+  const hash = window.location.hash;
+  if (!hash) return;
+
+  const targetFaq = document.querySelector(hash);
+  if (!targetFaq || !targetFaq.classList.contains('faq-item')) return;
+
+  const button = targetFaq.querySelector('.faq-item__question');
+  if (!button) return;
+
+  document.querySelectorAll('.faq-item').forEach(function (item) {
+    const itemButton = item.querySelector('.faq-item__question');
+    item.classList.remove('active');
+    if (itemButton) {
+      itemButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  targetFaq.classList.add('active');
+  button.setAttribute('aria-expanded', 'true');
+
+  setTimeout(function () {
+    const navH = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-h'),
+      10
+    ) || 72;
+
+    const top = targetFaq.getBoundingClientRect().top + window.scrollY - navH - 32;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }, 120);
+}
+
+openFaqFromHash();
+window.addEventListener('hashchange', openFaqFromHash);
+
 })();
