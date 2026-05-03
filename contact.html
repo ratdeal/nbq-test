@@ -3,17 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Contact | NBQ Engineering</title>
+
   <meta
     name="description"
     content="Get in touch with NBQ Engineering for collaborations, opportunities, post-quantum security inquiries, or general questions."
   />
 
   <link rel="icon" href="assets/favicon.ico" type="image/svg+xml" />
+
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
   <link
     href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap"
     rel="stylesheet"
@@ -21,10 +26,34 @@
 
   <style>
     .contact-hero {
+      position: relative;
       padding-top: calc(var(--nav-h) + 5rem);
       padding-bottom: var(--space-xl);
       border-bottom: 1px solid var(--color-border);
-      background: var(--color-bg);
+      background:
+        radial-gradient(circle at 88% 18%, rgba(61, 207, 234, 0.12), transparent 28%),
+        radial-gradient(circle at 12% 78%, rgba(0, 212, 170, 0.10), transparent 30%),
+        var(--color-bg);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .contact-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(0, 212, 170, 0.14) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(61, 207, 234, 0.10) 1px, transparent 1.5px);
+      background-size:
+        72px 72px,
+        132px 132px;
+      background-position:
+        0 0,
+        42px 56px;
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: -1;
     }
 
     .contact-hero__headline {
@@ -44,7 +73,25 @@
     }
 
     .contact-section {
+      position: relative;
       padding-block: var(--space-xl);
+      background:
+        radial-gradient(circle at 72% 16%, rgba(144, 229, 242, 0.13), transparent 32%),
+        radial-gradient(circle at 18% 72%, rgba(0, 212, 170, 0.08), transparent 34%),
+        var(--color-bg);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .contact-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,0.22), transparent 42%),
+        radial-gradient(circle at 50% 100%, rgba(61,207,234,0.06), transparent 36%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     .contact-section__inner {
@@ -55,7 +102,21 @@
     }
 
     .contact-form-wrap {
-      background: transparent;
+      position: relative;
+      background: rgba(255, 255, 255, 0.26);
+      border: 1px solid rgba(17, 17, 17, 0.08);
+      padding: clamp(1.25rem, 3vw, 2rem);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.035);
+    }
+
+    .contact-form-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border: 1px solid rgba(0, 212, 170, 0.12);
+      pointer-events: none;
     }
 
     .contact-form {
@@ -91,20 +152,23 @@
     .form-group textarea,
     .form-group select {
       width: 100%;
-      border: 1px solid var(--color-border);
-      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(17, 17, 17, 0.16);
+      background: rgba(255, 255, 255, 0.68);
       padding: 0.95rem 1rem;
       color: var(--color-text);
       outline: none;
-      transition: border-color var(--duration-fast) var(--ease),
-                  background var(--duration-fast) var(--ease);
+      transition:
+        border-color var(--duration-fast) var(--ease),
+        background var(--duration-fast) var(--ease),
+        box-shadow var(--duration-fast) var(--ease);
     }
 
     .form-group input:focus,
     .form-group textarea:focus,
     .form-group select:focus {
-      border-color: var(--color-text);
-      background: rgba(255, 255, 255, 0.95);
+      border-color: rgba(0, 212, 170, 0.72);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.10);
     }
 
     .form-group textarea {
@@ -113,26 +177,75 @@
     }
 
     .form-group--check {
-      flex-direction: row;
+      margin-top: 0.15rem;
+    }
+
+    .check-control {
+      display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
-      margin-top: 0.25rem;
-    }
-
-    .form-group--check input {
-      width: auto;
-      accent-color: var(--color-text);
-    }
-
-    .form-group--check label {
-      font-size: 0.8rem;
-      letter-spacing: 0.02em;
-      text-transform: none;
+      gap: 0.75rem;
+      width: fit-content;
+      max-width: 100%;
+      cursor: pointer;
+      user-select: none;
       font-family: var(--font-display);
+      font-size: 0.85rem;
+      line-height: 1.5;
       color: var(--color-text-muted);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .check-control input {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border: 1px solid rgba(17, 17, 17, 0.32);
+      background: rgba(255, 255, 255, 0.72);
+      display: inline-grid;
+      place-content: center;
+      cursor: pointer;
+      padding: 0;
+      margin: 0;
+      transition:
+        background var(--duration-fast) var(--ease),
+        border-color var(--duration-fast) var(--ease),
+        box-shadow var(--duration-fast) var(--ease);
+    }
+
+    .check-control input::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      transform: scale(0);
+      transition: transform var(--duration-fast) var(--ease);
+      background: #00d4aa;
+      box-shadow: 0 0 12px rgba(0, 212, 170, 0.55);
+    }
+
+    .check-control input:checked {
+      border-color: #00d4aa;
+      background: rgba(0, 212, 170, 0.08);
+      box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.10);
+    }
+
+    .check-control input:checked::before {
+      transform: scale(1);
+    }
+
+    .check-control input:focus-visible {
+      outline: 2px solid rgba(0, 212, 170, 0.55);
+      outline-offset: 3px;
+    }
+
+    .check-control span {
+      cursor: pointer;
     }
 
     .form-notice {
+      font-family: var(--font-display);
       font-size: 0.9rem;
       line-height: 1.7;
       color: var(--color-text-muted);
@@ -150,9 +263,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid var(--color-text);
+      border: 1px solid #00d4aa;
+      color: #00a98a;
       margin-bottom: 1rem;
       font-family: var(--font-mono);
+      box-shadow: 0 0 24px rgba(0, 212, 170, 0.12);
     }
 
     .form-success h3 {
@@ -175,7 +290,7 @@
 
     .contact-info__block {
       padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--color-border);
+      border-bottom: 1px solid rgba(17, 17, 17, 0.13);
     }
 
     .contact-info__block:last-of-type {
@@ -190,42 +305,75 @@
       color: var(--color-text);
     }
 
-    .contact-info__email a:hover {
-      opacity: 0.7;
+    .contact-info__email a {
+      transition:
+        opacity var(--duration-fast) var(--ease),
+        color var(--duration-fast) var(--ease);
     }
 
-    .contact-map-placeholder {
+    .contact-info__email a:hover {
+      opacity: 0.82;
+      color: #008f78;
+    }
+
+    .contact-map {
       position: relative;
-      min-height: 180px;
-      border: 1px solid var(--color-border);
+      width: 100%;
+      min-height: 260px;
+      border: 1px solid rgba(17, 17, 17, 0.14);
       overflow: hidden;
       background: rgba(255, 255, 255, 0.45);
-      display: flex;
-      align-items: flex-end;
-      padding: 1rem;
+      box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.04),
+        0 0 0 1px rgba(0, 212, 170, 0.08);
     }
 
-    .contact-map-placeholder__grid {
+    .contact-map::before {
+      content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(17,17,17,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(17,17,17,0.08) 1px, transparent 1px);
-      background-size: 34px 34px;
-      opacity: 0.6;
+      z-index: 1;
       pointer-events: none;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(0, 212, 170, 0.12), transparent 28%),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+      mix-blend-mode: screen;
     }
 
-    .contact-map-placeholder__label {
-      position: relative;
-      z-index: 1;
+    .contact-map iframe {
+      width: 100%;
+      height: 260px;
+      border: 0;
+      display: block;
+      filter: grayscale(1) contrast(1.05) brightness(0.98);
+    }
+
+    .contact-map__label {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 2;
       font-family: var(--font-mono);
       font-size: 0.68rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.92);
       padding: 0.45rem 0.55rem;
       color: var(--color-text);
+      pointer-events: none;
+      border: 1px solid rgba(0, 212, 170, 0.18);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    .contact-section .square-marker,
+    .contact-hero .square-marker {
+      background: #00d4aa;
+      box-shadow: 0 0 12px rgba(0, 212, 170, 0.42);
+    }
+
+    .contact-section .label,
+    .contact-hero .label {
+      color: rgba(17, 17, 17, 0.58);
     }
 
     @media (max-width: 960px) {
@@ -255,9 +403,20 @@
       .form-row--half {
         flex-direction: column;
       }
+
+      .contact-map,
+      .contact-map iframe {
+        min-height: 220px;
+        height: 220px;
+      }
+
+      .contact-form-wrap {
+        padding: 1.1rem;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- NAV -->
@@ -278,7 +437,7 @@
 
       <ul class="nav__links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="index.html#about">About</a></li>
         <li><a href="careers.html">Careers</a></li>
         <li><a href="faq.html">FAQ</a></li>
         <li><a href="contact.html" class="active">Contact</a></li>
@@ -291,6 +450,7 @@
   </header>
 
   <main>
+
     <!-- HERO -->
     <section class="contact-hero">
       <div class="container">
@@ -324,23 +484,46 @@
             <div class="form-row form-row--half">
               <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" name="firstName" placeholder="First name" required />
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First name"
+                  required
+                />
               </div>
 
               <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" name="lastName" placeholder="Last name" required />
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Last name"
+                  required
+                />
               </div>
             </div>
 
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="your@email.com"
+                required
+              />
             </div>
 
             <div class="form-group">
               <label for="organization">Organization</label>
-              <input type="text" id="organization" name="organization" placeholder="Organization name" />
+              <input
+                type="text"
+                id="organization"
+                name="organization"
+                placeholder="Organization name"
+              />
             </div>
 
             <div class="form-group">
@@ -369,11 +552,15 @@
             </div>
 
             <div class="form-group form-group--check">
-              <input type="checkbox" id="nda" name="nda" />
-              <label for="nda">I am interested in discussing under NDA</label>
+              <label class="check-control" for="nda">
+                <input type="checkbox" id="nda" name="nda" />
+                <span>I am interested in discussing under NDA</span>
+              </label>
             </div>
 
-            <button type="submit" class="btn btn--primary btn--full">Submit</button>
+            <button type="submit" class="btn btn--primary btn--full">
+              Submit
+            </button>
 
             <div class="form-notice">
               By submitting this form, you agree that NBQ Engineering may contact
@@ -384,7 +571,9 @@
           <div class="form-success" id="formSuccess" hidden>
             <div class="form-success__icon">✓</div>
             <h3>Message received.</h3>
-            <p>Thank you for reaching out. We will review your message and get back to you soon.</p>
+            <p>
+              Thank you for reaching out. We will review your message and get back to you soon.
+            </p>
           </div>
         </div>
 
@@ -394,8 +583,11 @@
             <div class="label">
               <span class="square-marker"></span> General
             </div>
+
             <p class="contact-info__email">
-              <a href="mailto:info@nbq-engineering.com">info@nbq-engineering.com</a>
+              <a href="mailto:info@nbq-engineering.com">
+                info@nbq-engineering.com
+              </a>
             </p>
           </div>
 
@@ -403,8 +595,11 @@
             <div class="label">
               <span class="square-marker"></span> Collaborations &amp; Technical
             </div>
+
             <p class="contact-info__email">
-              <a href="mailto:contact@nbq-engineering.com">contact@nbq-engineering.com</a>
+              <a href="mailto:contact@nbq-engineering.com">
+                contact@nbq-engineering.com
+              </a>
             </p>
           </div>
 
@@ -412,6 +607,7 @@
             <div class="label">
               <span class="square-marker"></span> Location
             </div>
+
             <address class="contact-info__address">
               NBQ Engineering<br />
               Morfou 9<br />
@@ -420,31 +616,43 @@
             </address>
           </div>
 
-          <div class="contact-map-placeholder" aria-label="Office location">
-            <div class="contact-map-placeholder__grid" aria-hidden="true"></div>
-            <span class="contact-map-placeholder__label">Patras, Greece · EU</span>
+          <div class="contact-map" aria-label="Office location in Patras, Greece">
+            <iframe
+              title="NBQ Engineering location - Patras, Greece"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Patras,%20Greece&output=embed">
+            </iframe>
+
+            <span class="contact-map__label">Patras, Greece · EU</span>
           </div>
         </aside>
+
       </div>
     </section>
+
   </main>
 
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <img src="images/logo.png" alt="NBQ Engineering" class="footer__logo" />
-        
+        <img
+          src="images/logo_black.png"
+          alt="NBQ Engineering"
+          class="footer__logo"
+        />
       </div>
 
       <nav class="footer__nav" aria-label="Footer">
-        <ul class="nav__links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="careers.html">Careers</a></li>
-        <li><a href="faq.html">FAQ</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+        <ul class="nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
       </nav>
 
       <div class="footer__meta">
@@ -456,5 +664,6 @@
 
   <script src="js/main.js"></script>
   <script src="js/animations.js"></script>
+
 </body>
 </html>
