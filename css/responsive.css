@@ -279,7 +279,8 @@
   }
 
 .hero-v2__logo {
-  width: clamp(260px, 78vw, 420px);
+  width: clamp(380px, 52vw, 820px);
+  display: block;
 }
 
   .hero-v2__tagline {
