@@ -1364,7 +1364,7 @@ h1, h2, h3, h4 {
 }
 
 .hero-v2__logo {
-  width: clamp(300px, 38vw, 500px);
+  width: clamp(440px, 52vw, 720px);
   display: block;
 }
 
